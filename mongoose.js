@@ -15,13 +15,24 @@ mongoose
   .catch((err) => console.error(err));
 
 const run = async () => {
-  const userData = new User({
-    name: "Kaito",
-    age: 25,
-    email: "siddiq@gmail.com",
-  });
+  try {
+    const userData = await User.create({
+      name: "Kaito",
+      age: 26,
+      email: "siddiq@gmail.com",
+      skills: ["React", "Mongoose"],
+      address: {
+        street: "New Link Road",
+      },
+    });
 
-  await userData.save().then(() => console.log("Data Saved"));
+    userData.age = 28;
+    await userData.save();
+
+    console.log(userData);
+  } catch (e) {
+    console.log(e.message);
+  }
 };
 
 run();
