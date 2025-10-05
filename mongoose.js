@@ -29,7 +29,9 @@ const run = async () => {
     userData.age = 28;
     await userData.save();
 
-    console.log(userData);
+    const userFind = await User.deleteOne({ name: "Kaito" });
+
+    console.log(userFind);
   } catch (e) {
     console.log(e.message);
   }
